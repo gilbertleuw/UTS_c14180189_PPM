@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<title>UTS PPM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+
+	<div data-role="page" id="win1" data-url="win1">
+	<div data-role="header"><h1>INPUT pinjaman</h1></div>
+	<div role="main" class="ui-content">
+
+		<div>
+            <label for="input">Input Pinjaman : </label>
+                 <input type="number" data-clear-btn="false" name="input" id="input">
+        </div>
+                 
+<div>
+    <label for="waktu">Waktu Pinjaman : </label>
+         <input type="number" data-clear-btn="true" name="waktu" id="waktu" value="0">
+   
+</div>
+                 
+            <div class="ui-block-c">
+				<div class="ui-body ui-body-d">
+					<button class="ui-btn" onclick="total();">Submit</button>			
+				</div>
+			</div>			
+		</div>
+		<div>
+			<p>Total  : <span id="total"></span></p>
+        </div>
+        
+
+
+
+			
+		<div data-role="footer">
+            <a href="#win2" data-transition="fade">Lihat List Pinjaman</a>
+		</div>
+    </div>
+    
+
+
+    <div data-role="page" id="win2" data-url="win2">
+        <div data-role="header"><h1>LIST pinjaman</h1></div>
+        <div role="main" class="ui-content">
+            
+            <ol data-role="listview">LIST PINJAMAN</ol>
+
+            </div>
+    
+    
+                
+            <div data-role="footer">
+                <a href="#win1" data-transition="pop">Back to Form Input Pinjaman</a>
+            </div>
+
+            
+            
+            
+    
+    
+    
+</body>
+
+<script type="text/javascript">
+    function total()
+    
+    {
+        var inputan = document.getElementById('input').value;
+        
+		var waktupinjaman = document.getElementById('waktu').value;
+
+        if (parseInt( waktupinjaman )> 0 && parseInt( waktupinjaman )<=6) 
+        
+        {
+			var hasil = parseInt( inputan ) + (parseInt( inputan ) * 0.02 * parseInt( waktupinjaman ))
+			document.getElementById('total').innerHTML =parseInt(inputan)+" + "+ "("+parseInt(inputan)+" * 2% * " +parseInt(waktupinjaman)+") = "+parseInt(hasil);
+        }
+        
+        else if (parseInt( waktupinjaman )>= 7 && parseInt( waktupinjaman )<= 12) 
+        
+        {
+			var hasil = parseInt( inputan ) + (parseInt( inputan ) * 0.015 * parseInt( waktupinjaman ))
+			document.getElementById('total').innerHTML =parseInt(inputan)+" + "+ "("+parseInt(inputan)+" * 1,5% * " +parseInt(waktupinjaman)+") = "+parseInt(hasil);
+        }
+        
+        else if (parseInt(waktupinjaman)>12) 
+        
+        {
+			var hasil = parseInt( inputan ) + (parseInt( inputan )  * 0.01 * parseInt( waktupinjaman ))
+			document.getElementById('total').innerHTML =parseInt( inputan )+" + "+ "("+parseInt( inputan )+" * 1% * " +parseInt(waktupinjaman)+") = "+parseInt(hasil);
+        }		
+        
+        var ol = $("ol");
+
+		var bayar = "<li> Jumlah yang harus dibayar  :  " + parseInt( hasil ) + "</li>" ;
+        ol.html(ol.html()+bayar);
+        
+
+
+	}
+</script>
+
+</html>
